@@ -92,7 +92,7 @@ first_service:
 
 second_service:
     ribbon:
-        listOfServers: localhost:8090/second,localhost:8091/second
+        listOfServers: localhost:8090/third,localhost:8091/third
         # Max number of retries
         MaxAutoRetries: 0
         # Max number of next servers to retry (excluding the first server)
@@ -141,7 +141,7 @@ hystrix:
                 isolation:
                     strategy: THREAD
                     thread:
-                        timeoutInMilliseconds: 3000 # This property sets the time in milliseconds after which the caller will observe a timeout and walk away from the command execution. Hystrix marks the HystrixCommand as a TIMEOUT, and performs fallback logic. Note that there is configuration for turning off timeouts per-command, if that is desired (see command.timeout.enabled).
+                        timeoutInMilliseconds: 6000 # This property sets the time in milliseconds after which the caller will observe a timeout and walk away from the command execution. Hystrix marks the HystrixCommand as a TIMEOUT, and performs fallback logic. Note that there is configuration for turning off timeouts per-command, if that is desired (see command.timeout.enabled).
                 timeout:
                     enabled: true
             circuitBreaker:
