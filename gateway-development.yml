@@ -1,9 +1,4 @@
-# spring应用配置信息
-spring:
-    cloud:
-        circuit:
-            breaker:
-                enabled: true
+
 # 负载均和客户端配置
 ribbon:
     eureka:
