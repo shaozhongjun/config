@@ -54,7 +54,7 @@ zuul:
 # 负载均衡配置
 first_service:
     ribbon:
-        listOfServers: localhost:8090,localhost:8091
+        listOfServers: 127.0.0.1:8090,127.0.0.1:8091
         # Max number of retries
         MaxAutoRetries: 0
         # Max number of next servers to retry (excluding the first server)
@@ -87,7 +87,7 @@ first_service:
 
 second_service:
     ribbon:
-        listOfServers: localhost:8090,localhost:8091
+        listOfServers: 127.0.0.1:8090,127.0.0.1:8091
         # Max number of retries
         MaxAutoRetries: 0
         # Max number of next servers to retry (excluding the first server)
@@ -119,7 +119,7 @@ second_service:
         ServerListRefreshInterval: 2000
 third_service:
     ribbon:
-        listOfServers: localhost:8090,localhost:8091
+        listOfServers: 127.0.0.1:8090,127.0.0.1:8091
 
 ##timeout config
 hystrix:
