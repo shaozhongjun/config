@@ -130,7 +130,7 @@ hystrix:
                     enabled: true
                 isolation:
                     thread:
-                        timeoutInMilliseconds: 1000
+                        timeoutInMilliseconds: 6000
         first_service:
             execution:
                 isolation:
