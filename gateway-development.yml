@@ -33,27 +33,18 @@ zuul:
             path: /first/**
             customSensitiveHeaders: false
             serviceId: first_service
-            ruleMatcher: true
-            servicePattern: (?<field1>.*)/(?<field2>.*$)
-            routePattern: /${field2}/${field1}
         second:
             stripPrefix: false
             retryable: false
             path: /second/**
             customSensitiveHeaders: false
             serviceId: second_service
-            ruleMatcher: true
-            servicePattern: (?<field1>.*)/(?<field2>.*$)
-            routePattern: /${field2}/${field1}
         third:
             stripPrefix: false
             retryable: false
             path: /third/**
             customSensitiveHeaders: false
             serviceId: third_service
-            ruleMatcher: true
-            servicePattern: (?<field1>.*)/(?<field2>.*$)
-            routePattern: /${field2}/${field1}
 #    host:   # SimpleHostRoutingFilter配置转发客户端的超时时间
 #        maxTotalConnections: 500     # T he maximum number of total connections the proxy can hold open to backends.
 #        maxPerRouteConnections: 50   # The maximum number of connections that can be used by a single route.
@@ -70,7 +61,6 @@ first_service:
         MaxAutoRetriesNextServer: 0
         # Whether all operations can be retried for this client
         OkToRetryOnAllOperations: false
-
         ReceiveBufferSize: 4096
         # 长连接配置
         EnableConnectionPool: true
@@ -88,7 +78,7 @@ first_service:
         GZipPayload: true
         # 配置负载均和策略及规则
         NFLoadBalancerClassName: com.netflix.loadbalancer.DynamicServerListLoadBalancer
-#        NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+        NFLoadBalancerRuleClassName: com.ucash.gateway.common.ribbon.IPHashRule
 #        NFLoadBalancerPingClassName: com.netflix.loadbalancer.DummyPing
         NFLoadBalancerPingInterval: 30
         # Interval to refresh the server list from the source
@@ -205,4 +195,16 @@ hystrix:
             queueSizeRejectionThreshold: 5 # 设置拒绝请求的临界值
             keepAliveTimeMinutes: 1 # 设置keep-live时间 这个一般用不到因为默认corePoolSize和maxPoolSize是一样的
 
-
+zuulext:
+    first_service:
+        ruleMatcher: true
+        servicePattern: (?<field1>.*)/(?<field2>.*$)
+        routePattern: /${field2}/${field1}
+    second_service:
+        ruleMatcher: true
+        servicePattern: (?<field1>.*)/(?<field2>.*$)
+        routePattern: /${field2}/${field1}
+   third_service:
+        ruleMatcher: true
+        servicePattern: (?<field1>.*)/(?<field2>.*$)
+        routePattern: /${field2}/${field1}
