@@ -196,18 +196,19 @@ hystrix:
             keepAliveTimeMinutes: 1 # 设置keep-live时间 这个一般用不到因为默认corePoolSize和maxPoolSize是一样的
 
 zuulext:
-    first:
-        serviceId: first_service
-        ruleMatcher: true
-        servicePattern: (?<field1>.*)/(?<field2>.*$)
-        routePattern: /${field2}/${field1}
-    second:
-        serviceId: second_service
-        ruleMatcher: true
-        servicePattern: (?<field1>.*)/(?<field2>.*$)
-        routePattern: /${field2}/${field1}
-    third:
-        serviceId: third_service
-        ruleMatcher: true
-        servicePattern: (?<field1>.*)/(?<field2>.*$)
-        routePattern: /${field2}/${field1}
+    routePatterns:
+        first:
+            serviceId: first_service
+            ruleMatcher: true
+            servicePattern: (?<field1>.*)/(?<field2>.*$)
+            routePattern: /${field2}/${field1}
+        second:
+            serviceId: second_service
+            ruleMatcher: true
+            servicePattern: (?<field1>.*)/(?<field2>.*$)
+            routePattern: /${field2}/${field1}
+        third:
+            serviceId: third_service
+            ruleMatcher: true
+            servicePattern: (?<field1>.*)/(?<field2>.*$)
+            routePattern: /${field2}/${field1}
