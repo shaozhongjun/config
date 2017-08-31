@@ -201,14 +201,14 @@ zuulext:
             serviceId: first_service
             ruleMatcher: true
             servicePattern: (?<field1>.*)/(?<field2>.*$)
-            routePattern: /${field2}/${field1}
+            routePattern: /${field1}/${field2}
         second_service:
             serviceId: second_service
             ruleMatcher: true
             servicePattern: (?<field1>.*)/(?<field2>.*$)
-            routePattern: /${field2}/${field1}
+            routePattern: /${field1}/${field2}
         third_service:
             serviceId: third_service
             ruleMatcher: true
             servicePattern: (?<field1>.*)/(?<field2>.*$)
-            routePattern: /${field2}/${field1}
+            routePattern: /${field1}/${field2}
