@@ -197,17 +197,17 @@ hystrix:
 
 zuulext:
     routePatterns:
-        first:
+        first_service:
             serviceId: first_service
             ruleMatcher: true
             servicePattern: (?<field1>.*)/(?<field2>.*$)
             routePattern: /${field2}/${field1}
-        second:
+        second_service:
             serviceId: second_service
             ruleMatcher: true
             servicePattern: (?<field1>.*)/(?<field2>.*$)
             routePattern: /${field2}/${field1}
-        third:
+        third_service:
             serviceId: third_service
             ruleMatcher: true
             servicePattern: (?<field1>.*)/(?<field2>.*$)
