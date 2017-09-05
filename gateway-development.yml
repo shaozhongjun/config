@@ -24,7 +24,7 @@ zuul:
 #    semaphore:
 #        maxSemaphores: 500
     threadPool:
-        useSeparateThreadPools: ture
+        useSeparateThreadPools: true
         threadPoolKeyPrefix: zuulthreadPool
     ribbon:  # 启动时初始化ribbon负载均衡
         eager-load:
