@@ -184,7 +184,7 @@ hystrix:
                 isolation:
                     strategy: THREAD
                     thread:
-                        timeoutInMilliseconds: 5000 # This property sets the time in milliseconds after which the caller will observe a timeout and walk away from the command execution. Hystrix marks the HystrixCommand as a TIMEOUT, and performs fallback logic. Note that there is configuration for turning off timeouts per-command, if that is desired (see command.timeout.enabled).
+                        timeoutInMilliseconds: 1000 # This property sets the time in milliseconds after which the caller will observe a timeout and walk away from the command execution. Hystrix marks the HystrixCommand as a TIMEOUT, and performs fallback logic. Note that there is configuration for turning off timeouts per-command, if that is desired (see command.timeout.enabled).
                 timeout:
                     enabled: true
             circuitBreaker:
