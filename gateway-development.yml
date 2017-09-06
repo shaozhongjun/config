@@ -37,7 +37,7 @@ zuul:
             customSensitiveHeaders: false
             serviceId: first_service
             sessionType: IP_HASH
-            ruleMatcher: true
+            ruleMatcher: false
             servicePattern: (?<field1>.*)/(?<field2>.*$)
             routePattern: /${field1}/${field2}
         second:
@@ -49,7 +49,7 @@ zuul:
             sessionType: COOKIE
             cookieName: second_service
             cookieExpires: 86400
-            ruleMatcher: true
+            ruleMatcher: false
             servicePattern: (?<field1>.*)/(?<field2>.*$)
             routePattern: /${field1}/${field2}
         third:
@@ -59,7 +59,7 @@ zuul:
             customSensitiveHeaders: false
             serviceId: third_service
             sessionType: NONE
-            ruleMatcher: true
+            ruleMatcher: false
             servicePattern: (?<field1>.*)/(?<field2>.*$)
             routePattern: /${field1}/${field2}
 #    host:   # SimpleHostRoutingFilter配置转发客户端的超时时间
