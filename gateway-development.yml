@@ -211,7 +211,7 @@ hystrix:
             maxQueueSize: -1 # 最大队列长度。设置BlockingQueue的最大长度, 默认值：-1 如果使用正数，队列将从SynchronousQueue改为LinkedBlockingQueue
             queueSizeRejectionThreshold: 5 # 设置拒绝请求的临界值
             keepAliveTimeMinutes: 1 # 设置keep-live时间 这个一般用不到因为默认corePoolSize和maxPoolSize是一样的
-        third_service_service:
+        third_service:
             execution:
                 isolation:
                     strategy: THREAD
