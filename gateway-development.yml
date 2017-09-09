@@ -74,7 +74,7 @@ zuul:
         policies:
             first_service:
                 limit: 2
-                refresh-interval: 60 #default value (in seconds)
+                refresh-interval: 1 #default value (in seconds)
                 type: url  #optional  - user  - origin  - url
 
 
