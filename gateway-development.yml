@@ -30,7 +30,7 @@ zuul:
         eager-load:
             enabled: true
     routes:  # 配置路由
-        first:
+        first_service:
             stripPrefix: false
             retryable: false
             path: /first/**
@@ -40,7 +40,7 @@ zuul:
             ruleMatcher: false
             servicePattern: (?<field1>.*)/(?<field2>.*$)
             routePattern: /${field1}/${field2}
-        second:
+        second_service:
             stripPrefix: false
             retryable: false
             path: /second/**
@@ -52,7 +52,7 @@ zuul:
             ruleMatcher: false
             servicePattern: (?<field1>.*)/(?<field2>.*$)
             routePattern: /${field1}/${field2}
-        third:
+        third_service:
             stripPrefix: false
             retryable: false
             path: /third/**
@@ -67,6 +67,17 @@ zuul:
 #        maxPerRouteConnections: 50   # The maximum number of connections that can be used by a single route.
 #        socketTimeoutMillis: 50000   # The socket timeout in millis. Defaults to 50000.
 #        connectTimeoutMillis: 5000   # The connection timeout in millis. Defaults to 2000.
+
+    ratelimit:
+        enabled: true #default false
+        behind-proxy: true #default false
+        policies:
+            first_service:
+                limit: 2
+                refresh-interval: 60 #default value (in seconds)
+                type: url  #optional  - user  - origin  - url
+
+
 
 # 负载均衡配置
 first_service:
