@@ -76,7 +76,7 @@ zuul:
                 limit: 2
                 refresh-interval: 1 #default value (in seconds)
                 type: url  #optional  - user  - origin  - url   if url
-                ignored-Patterns: *
+                ignored-Patterns: '*'
                 sub-policies:
                     first_service_urlpolicies1:
                         limit: 2
