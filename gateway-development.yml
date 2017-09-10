@@ -72,10 +72,22 @@ zuul:
         enabled: true #default false
         behind-proxy: true #default false
         policies:
-            first_service:
+            first_service:  # default policy
                 limit: 2
                 refresh-interval: 1 #default value (in seconds)
-                type: url  #optional  - user  - origin  - url
+                type: url  #optional  - user  - origin  - url   if url
+                ignored-Patterns: *
+                sub-policies:
+                    first_service_urlpolicies1:
+                        limit: 2
+                        refresh-interval: 1 #default value (in seconds)
+                        type: url
+                        urlRuleMatcher : /first/test*
+                    first_service_urlpolicies2:
+                        limit: 2
+                        type: url
+                        refresh-interval: 1 #default value (in seconds)
+                        urlRuleMatcher : /first/abc*/**
 
 
 
