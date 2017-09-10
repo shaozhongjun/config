@@ -79,8 +79,8 @@ zuul:
                 ignored-Patterns: '*'
                 sub-policies:
                     first_service_urlpolicies1:
-                        limit: 2
-                        refresh-interval: 1 #default value (in seconds)
+                        limit: 3
+                        refresh-interval: 3 #default value (in seconds)
                         type: url
                         urlRuleMatcher : /first/test*
                     first_service_urlpolicies2:
