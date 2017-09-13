@@ -120,9 +120,9 @@ first_service:
         NFLoadBalancerClassName: com.netflix.loadbalancer.DynamicServerListLoadBalancer
         NFLoadBalancerRuleClassName: com.ucash.gateway.ribbon.IPHashRule
 #        NFLoadBalancerPingClassName: com.netflix.loadbalancer.DummyPing
-        NFLoadBalancerPingInterval: 30
+        NFLoadBalancerPingInterval: 10
         # Interval to refresh the server list from the source
-        ServerListRefreshInterval: 2000
+        ServerListRefreshInterval: 60000
 
 second_service:
     ribbon:
@@ -153,12 +153,14 @@ second_service:
         NFLoadBalancerClassName: com.netflix.loadbalancer.DynamicServerListLoadBalancer
         NFLoadBalancerRuleClassName: com.ucash.gateway.ribbon.CookieRule
 #        NFLoadBalancerPingClassName: com.netflix.loadbalancer.DummyPing
-        NFLoadBalancerPingInterval: 30
+        NFLoadBalancerPingInterval: 10
         # Interval to refresh the server list from the source
-        ServerListRefreshInterval: 2000
+        ServerListRefreshInterval: 60000
 third_service:
     ribbon:
         listOfServers: 127.0.0.1:8090,127.0.0.1:8091
+        NFLoadBalancerPingInterval: 10
+        ServerListRefreshInterval: 60000
 
 ##timeout config
 hystrix:
