@@ -159,6 +159,7 @@ second_service:
 third_service:
     ribbon:
         listOfServers: 127.0.0.1:8090,127.0.0.1:8091
+        NFLoadBalancerPingClassName: com.ucash.gateway.ribbon.CustomPing
         NFLoadBalancerPingInterval: 10
         ServerListRefreshInterval: 60000
 
