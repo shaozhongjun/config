@@ -79,18 +79,44 @@ zuul:
                 ignored-Patterns: '*'
                 sub-policies:
                     first_service_urlpolicies1:
+<<<<<<< HEAD
+                        limit: 3
+                        refresh-interval: 30 #default value (in seconds)
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                        limit: 3
+                        refresh-interval: 30 #default value (in seconds)
+=======
+<<<<<<< HEAD
+>>>>>>> a46ead10bf75bc0d6a849a7e04c11c35d77bc907
+>>>>>>> a2817af507ca78f7674c1a7db21b87b48cef7fd0
                         limit: 3
                         refresh-interval: 30 #default value (in seconds)
                         limit: 3
                         refresh-interval: 30 #default value (in seconds)
-                        limit: 3
-                        refresh-interval: 30 #default value (in seconds)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a2817af507ca78f7674c1a7db21b87b48cef7fd0
                         limit: 3
                         refresh-interval: 30 #default value (in seconds)
                         limit: 200    #3
                         refresh-interval: 20 #default value (in seconds)
+<<<<<<< HEAD
                         limit: 200    #3
                         refresh-interval: 20 #default value (in seconds)
+=======
+=======
+=======
+                        limit: 200    #3
+                        refresh-interval: 20 #default value (in seconds)
+>>>>>>> b3088817380751c0cace7bcd05b447f38b5cbbd8
+>>>>>>> 0726d5c00b336fd230e6b0d5424f8b93c26dada6
+>>>>>>> ccbd39c5fd88d71c10c7ed6c5c195eea21f59584
+>>>>>>> a46ead10bf75bc0d6a849a7e04c11c35d77bc907
+>>>>>>> a2817af507ca78f7674c1a7db21b87b48cef7fd0
                         type: url
                         urlRuleMatcher : /first/test*
                     first_service_urlpolicies2:
