@@ -81,6 +81,12 @@ zuul:
                     first_service_urlpolicies1:
                         limit: 3
                         refresh-interval: 30 #default value (in seconds)
+                        limit: 3
+                        refresh-interval: 30 #default value (in seconds)
+                        limit: 3
+                        refresh-interval: 30 #default value (in seconds)
+                        limit: 200    #3
+                        refresh-interval: 20 #default value (in seconds)
                         type: url
                         urlRuleMatcher : /first/test*
                     first_service_urlpolicies2:
