@@ -19,7 +19,7 @@ zuul:
     sensitiveHeaders:
     sslHostnameValidationEnabled: false
     ribbonIsolationStrategy: THREAD
-    traceRequestBody: false
+    traceRequestBody: true
     ignoredServices: '*'
 #    semaphore:
 #        maxSemaphores: 500
@@ -71,24 +71,24 @@ zuul:
     ratelimit:
         enabled: true #default false
         behind-proxy: true #default false
+        repository: REDIS
         policies:
             first_service:  # default policy
-                limit: 2
+                limit: 200
                 refresh-interval: 1 #default value (in seconds)
                 type: url  #optional  - user  - origin  - url   if url
                 ignored-Patterns: '*'
                 sub-policies:
                     first_service_urlpolicies1:
-                        limit: 3
-                        refresh-interval: 30 #default value (in seconds)
+                        limit: 200    #3
+                        refresh-interval: 20 #default value (in seconds)
                         type: url
                         urlRuleMatcher : /first/test*
                     first_service_urlpolicies2:
-                        limit: 2
+                        limit: 50
                         type: url
                         refresh-interval: 1 #default value (in seconds)
                         urlRuleMatcher : /first/abc*/**
-
 
 
 # 负载均衡配置
@@ -104,15 +104,15 @@ first_service:
         ReceiveBufferSize: 4096
         # 长连接配置
         EnableConnectionPool: true
-        PoolKeepAliveTimeUnits: 100
-        PoolKeepAliveTime: 100
-        PoolMinThreads: 100
-        PoolMaxThreads: 100
+        PoolKeepAliveTimeUnits: 300
+        PoolKeepAliveTime: 300
+        PoolMinThreads: 300
+        PoolMaxThreads: 300
         # 配置连接数
-        MaxConnectionsPerHost: 100
-        MaxTotalConnections: 1000
+        MaxConnectionsPerHost: 300
+        MaxTotalConnections: 3000
         # 配置连接时间
-        ConnectTimeout: 1000
+        ConnectTimeout: 3000
         ReadTimeout: 10000
         # 配置数据压缩
         GZipPayload: true
@@ -120,9 +120,10 @@ first_service:
         NFLoadBalancerClassName: com.netflix.loadbalancer.DynamicServerListLoadBalancer
         NFLoadBalancerRuleClassName: com.ucash.gateway.ribbon.IPHashRule
         NFLoadBalancerPingClassName: com.ucash.gateway.ribbon.CustomPing
-        NFLoadBalancerPingInterval: 15
+#        NFLoadBalancerPingClassName: com.netflix.loadbalancer.DummyPing
+        NFLoadBalancerPingInterval: 30
         # Interval to refresh the server list from the source
-        ServerListRefreshInterval: 60000
+        ServerListRefreshInterval: 2000
 
 second_service:
     ribbon:
@@ -153,15 +154,14 @@ second_service:
         NFLoadBalancerClassName: com.netflix.loadbalancer.DynamicServerListLoadBalancer
         NFLoadBalancerRuleClassName: com.ucash.gateway.ribbon.CookieRule
         NFLoadBalancerPingClassName: com.ucash.gateway.ribbon.CustomPing
-        NFLoadBalancerPingInterval: 15
+#        NFLoadBalancerPingClassName: com.netflix.loadbalancer.DummyPing
+        NFLoadBalancerPingInterval: 30
         # Interval to refresh the server list from the source
-        ServerListRefreshInterval: 60000
+        ServerListRefreshInterval: 2000
 third_service:
     ribbon:
-        listOfServers: 127.0.0.1:8090,127.0.0.1:8091
+        listOfServers: 127.0.0.1:8090,127.0.0.1:8091    
         NFLoadBalancerPingClassName: com.ucash.gateway.ribbon.CustomPing
-        NFLoadBalancerPingInterval: 10
-        ServerListRefreshInterval: 60000
 
 ##timeout config
 hystrix:
@@ -178,14 +178,14 @@ hystrix:
                 isolation:
                     strategy: THREAD
                     thread:
-                        timeoutInMilliseconds: 5000 # This property sets the time in milliseconds after which the caller will observe a timeout and walk away from the command execution. Hystrix marks the HystrixCommand as a TIMEOUT, and performs fallback logic. Note that there is configuration for turning off timeouts per-command, if that is desired (see command.timeout.enabled).
+                        timeoutInMilliseconds: 1000 # This property sets the time in milliseconds after which the caller will observe a timeout and walk away from the command execution. Hystrix marks the HystrixCommand as a TIMEOUT, and performs fallback logic. Note that there is configuration for turning off timeouts per-command, if that is desired (see command.timeout.enabled).
                 timeout:
                     enabled: true
             circuitBreaker:
                 enabled: true
-                requestVolumeThreshold: 20        # 熔断器在整个统计时间内是否开启的阀值，默认20秒。也就是10秒钟内至少请求20次，熔断器才发挥起作用
+                requestVolumeThreshold: 20        # 一个统计窗口内熔断触发的最小个数/10s
                 sleepWindowInMilliseconds: 50000  # 熔断器默认工作时间,默认:5秒.熔断器中断请求5秒后会进入半打开状态,放部分流量过去重试
-                errorThresholdPercentage: 50      # 默认:50%。当出错率超过50%后熔断器启动.
+                errorThresholdPercentage: 10      # 默认:50%。当出错率超过50%后熔断器启动.
             metrics:
                 rollingStats:
                     timeInMilliseconds: 10000  # 设置统计滚动窗口的长度，以毫秒为单位。用于监控和熔断器。
@@ -201,7 +201,7 @@ hystrix:
                 enabled: true  # 设置是否缓存请求，request-scope内缓存
             requestLog:
                 enabled: true  # 设置HystrixCommand执行和事件是否打印到HystrixRequestLog中
-            coreSize: 10 #     设置线程池的core size,这是最大的并发执行数量 设置标准：coreSize = requests per second at peak when healthy × 99th percentile latency in seconds + some breathing room 大多数情况下默认的10个线程都是值得建议的
+            coreSize: 10 #     设置线程池的core size,这是最大的并发执行数量 设置标准：coreSize = requests per second at peak when healthy × 99th percentile latency in seconds +  some breathing room 大多数情况下默认的10个线程都是值得建议的
             maxQueueSize: -1 # 最大队列长度。设置BlockingQueue的最大长度, 默认值：-1 如果使用正数，队列将从SynchronousQueue改为LinkedBlockingQueue
             queueSizeRejectionThreshold: 5 # 设置拒绝请求的临界值
             keepAliveTimeMinutes: 1 # 设置keep-live时间 这个一般用不到因为默认corePoolSize和maxPoolSize是一样的
