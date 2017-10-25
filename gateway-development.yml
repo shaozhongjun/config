@@ -19,7 +19,7 @@ zuul:
     sensitiveHeaders:
     sslHostnameValidationEnabled: false
     ribbonIsolationStrategy: THREAD
-    traceRequestBody: true
+    traceRequestBody: false
     ignoredServices: '*'
 #    semaphore:
 #        maxSemaphores: 500
@@ -120,10 +120,14 @@ first_service:
         NFLoadBalancerClassName: com.netflix.loadbalancer.DynamicServerListLoadBalancer
         NFLoadBalancerRuleClassName: com.ucash.gateway.ribbon.IPHashRule
         NFLoadBalancerPingClassName: com.ucash.gateway.ribbon.CustomPing
+<<<<<<< HEAD
 #        NFLoadBalancerPingClassName: com.netflix.loadbalancer.DummyPing
         NFLoadBalancerPingInterval: 30
+=======
+        NFLoadBalancerPingInterval: 15
+>>>>>>> aff1a3681621ed01524a30894dbbb2113c04416c
         # Interval to refresh the server list from the source
-        ServerListRefreshInterval: 2000
+        ServerListRefreshInterval: 60000
 
 second_service:
     ribbon:
@@ -154,14 +158,25 @@ second_service:
         NFLoadBalancerClassName: com.netflix.loadbalancer.DynamicServerListLoadBalancer
         NFLoadBalancerRuleClassName: com.ucash.gateway.ribbon.CookieRule
         NFLoadBalancerPingClassName: com.ucash.gateway.ribbon.CustomPing
+<<<<<<< HEAD
 #        NFLoadBalancerPingClassName: com.netflix.loadbalancer.DummyPing
         NFLoadBalancerPingInterval: 30
+=======
+        NFLoadBalancerPingInterval: 15
+>>>>>>> aff1a3681621ed01524a30894dbbb2113c04416c
         # Interval to refresh the server list from the source
-        ServerListRefreshInterval: 2000
+        ServerListRefreshInterval: 60000
 third_service:
     ribbon:
+<<<<<<< HEAD
         listOfServers: 127.0.0.1:8090,127.0.0.1:8091    
         NFLoadBalancerPingClassName: com.ucash.gateway.ribbon.CustomPing
+=======
+        listOfServers: 127.0.0.1:8090,127.0.0.1:8091
+        NFLoadBalancerPingClassName: com.ucash.gateway.ribbon.CustomPing
+        NFLoadBalancerPingInterval: 10
+        ServerListRefreshInterval: 60000
+>>>>>>> aff1a3681621ed01524a30894dbbb2113c04416c
 
 ##timeout config
 hystrix:
