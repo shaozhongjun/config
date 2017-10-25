@@ -19,7 +19,7 @@ zuul:
     sensitiveHeaders:
     sslHostnameValidationEnabled: false
     ribbonIsolationStrategy: THREAD
-    traceRequestBody: false
+    traceRequestBody: true
     ignoredServices: '*'
 #    semaphore:
 #        maxSemaphores: 500
