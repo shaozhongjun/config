@@ -79,12 +79,12 @@ zuul:
                 ignored-Patterns: '*'
                 sub-policies:
                     first_service_urlpolicies1:
-                        limit: 3
+                        limit: 200
                         refresh-interval: 30 #default value (in seconds)
                         type: url
                         urlRuleMatcher : /first/test*
                     first_service_urlpolicies2:
-                        limit: 2
+                        limit: 200
                         type: url
                         refresh-interval: 1 #default value (in seconds)
                         urlRuleMatcher : /first/abc*/**
