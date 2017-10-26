@@ -79,7 +79,7 @@ zuul:
                 ignored-Patterns: '*'
                 sub-policies:
                     first_service_urlpolicies1:
-                        limit: 3
+                        limit: 50
                         refresh-interval: 30 #default value (in seconds)
                         type: url
                         urlRuleMatcher : /first/test*
@@ -104,12 +104,12 @@ first_service:
         ReceiveBufferSize: 4096
         # 长连接配置
         EnableConnectionPool: true
-        PoolKeepAliveTimeUnits: 100
-        PoolKeepAliveTime: 100
-        PoolMinThreads: 100
-        PoolMaxThreads: 100
+        PoolKeepAliveTimeUnits: 300
+        PoolKeepAliveTime: 300
+        PoolMinThreads: 300
+        PoolMaxThreads: 300
         # 配置连接数
-        MaxConnectionsPerHost: 100
+        MaxConnectionsPerHost: 300
         MaxTotalConnections: 1000
         # 配置连接时间
         ConnectTimeout: 1000
@@ -183,7 +183,7 @@ hystrix:
                     enabled: true
             circuitBreaker:
                 enabled: true
-                requestVolumeThreshold: 20        # 熔断器在整个统计时间内是否开启的阀值，默认20秒。也就是10秒钟内至少请求20次，熔断器才发挥起作用
+                requestVolumeThreshold: 10        # 熔断器在整个统计时间内是否开启的阀值，默认20秒。也就是10秒钟内至少请求20次，熔断器才发挥起作用
                 sleepWindowInMilliseconds: 50000  # 熔断器默认工作时间,默认:5秒.熔断器中断请求5秒后会进入半打开状态,放部分流量过去重试
                 errorThresholdPercentage: 50      # 默认:50%。当出错率超过50%后熔断器启动.
             metrics:
