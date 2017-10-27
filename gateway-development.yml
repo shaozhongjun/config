@@ -33,35 +33,35 @@ zuul:
         first_service:
             stripPrefix: false
             retryable: false
-            path: /first/**
+            path: /pweb/**
             customSensitiveHeaders: false
             serviceId: first_service
             sessionType: IP_HASH
             ruleMatcher: false
             servicePattern: (?<field1>.*)/(?<field2>.*$)
             routePattern: /${field1}/${field2}
-        second_service:
-            stripPrefix: false
-            retryable: false
-            path: /second/**
-            customSensitiveHeaders: false
-            serviceId: second_service
-            sessionType: COOKIE
-            cookieName: second_service
-            cookieExpires: 86400
-            ruleMatcher: false
-            servicePattern: (?<field1>.*)/(?<field2>.*$)
-            routePattern: /${field1}/${field2}
-        third_service:
-            stripPrefix: false
-            retryable: false
-            path: /third/**
-            customSensitiveHeaders: false
-            serviceId: third_service
-            sessionType: NONE
-            ruleMatcher: false
-            servicePattern: (?<field1>.*)/(?<field2>.*$)
-            routePattern: /${field1}/${field2}
+#        second_service:
+#            stripPrefix: false
+#            retryable: false
+#            path: /second/**
+#            customSensitiveHeaders: false
+#            serviceId: second_service
+#            sessionType: COOKIE
+#            cookieName: second_service
+#            cookieExpires: 86400
+#            ruleMatcher: false
+#            servicePattern: (?<field1>.*)/(?<field2>.*$)
+#            routePattern: /${field1}/${field2}
+#       third_service:
+#            stripPrefix: false
+#            retryable: false
+#            path: /third/**
+#            customSensitiveHeaders: false
+#            serviceId: third_service
+#            sessionType: NONE
+#            ruleMatcher: false
+#            servicePattern: (?<field1>.*)/(?<field2>.*$)
+#            routePattern: /${field1}/${field2}
 #    host:   # SimpleHostRoutingFilter配置转发客户端的超时时间
 #        maxTotalConnections: 500     # T he maximum number of total connections the proxy can hold open to backends.
 #        maxPerRouteConnections: 50   # The maximum number of connections that can be used by a single route.
@@ -82,19 +82,20 @@ zuul:
                         limit: 200
                         refresh-interval: 30 #default value (in seconds)
                         type: url
-                        urlRuleMatcher : /first/test*
+                        urlRuleMatcher : /pweb/*.do
                     first_service_urlpolicies2:
                         limit: 200
                         type: url
-                        refresh-interval: 1 #default value (in seconds)
-                        urlRuleMatcher : /first/abc*/**
+                        refresh-interval: 30 #default value (in seconds)
+                        urlRuleMatcher : /pweb/**
 
 
 
 # 负载均衡配置
 first_service:
     ribbon:
-        listOfServers: 127.0.0.1:8090,127.0.0.1:8091
+        #127.0.0.1:8090,127.0.0.1:8091
+        listOfServers: 11.115.0.18:8997,11.115.0.19:8997
         # Max number of retries
         MaxAutoRetries: 0
         # Max number of next servers to retry (excluding the first server)
@@ -126,7 +127,7 @@ first_service:
 
 second_service:
     ribbon:
-        listOfServers: 127.0.0.1:8090,127.0.0.1:8091
+        listOfServers: 11.115.0.18:8997,11.115.0.19:8997
         # Max number of retries
         MaxAutoRetries: 0
         # Max number of next servers to retry (excluding the first server)
@@ -158,7 +159,7 @@ second_service:
         ServerListRefreshInterval: 60000
 third_service:
     ribbon:
-        listOfServers: 127.0.0.1:8090,127.0.0.1:8091
+        listOfServers: 11.115.0.18:8997,11.115.0.19:8997  #127.0.0.1:8090,127.0.0.1:8091
         NFLoadBalancerPingClassName: com.ucash.gateway.ribbon.CustomPing
         NFLoadBalancerPingInterval: 10
         ServerListRefreshInterval: 60000
