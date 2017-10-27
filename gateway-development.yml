@@ -34,6 +34,7 @@ zuul:
             stripPrefix: false
             retryable: false
             path: /pweb/**
+            url: http://11.115.0.10:9090/pweb/AlipayLastLoanInfoQry.do
             customSensitiveHeaders: false
             serviceId: first_service
             sessionType: IP_HASH
