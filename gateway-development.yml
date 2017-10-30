@@ -33,8 +33,8 @@ zuul:
         first_service:
             stripPrefix: false
             retryable: false
-            path: /pweb/**
-            url: http://11.115.0.10:9090/pweb/AlipayLastLoanInfoQry.do
+            path: pweb/AlipayFastLoanSubmit.do
+            url: first_service
             customSensitiveHeaders: false
             serviceId: first_service
             sessionType: IP_HASH
@@ -96,7 +96,7 @@ zuul:
 first_service:
     ribbon:
         #127.0.0.1:8090,127.0.0.1:8091
-        listOfServers: 11.115.0.18:8997,11.115.0.19:8997
+        listOfServers: 11.115.0.18:23003,11.115.0.19:23003
         # Max number of retries
         MaxAutoRetries: 0
         # Max number of next servers to retry (excluding the first server)
@@ -160,7 +160,7 @@ second_service:
         ServerListRefreshInterval: 60000
 third_service:
     ribbon:
-        listOfServers: 11.115.0.18:8997,11.115.0.19:8997  #127.0.0.1:8090,127.0.0.1:8091
+        listOfServers: 11.115.0.18:8997,11.115.0.19:8997
         NFLoadBalancerPingClassName: com.ucash.gateway.ribbon.CustomPing
         NFLoadBalancerPingInterval: 10
         ServerListRefreshInterval: 60000
