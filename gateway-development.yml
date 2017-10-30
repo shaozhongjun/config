@@ -33,7 +33,7 @@ zuul:
         first_service:
             stripPrefix: false
             retryable: false
-            path: /pweb/**
+            path: /pweb/AlipayFastLoanSubmit.do
             customSensitiveHeaders: false
             serviceId: AlipayFastLoanSubmit.do
             sessionType: IP_HASH
