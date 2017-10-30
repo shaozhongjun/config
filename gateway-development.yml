@@ -30,12 +30,12 @@ zuul:
         eager-load:
             enabled: true
     routes:  # 配置路由
-        first_service:
+        AlipayFastLoanSubmit:
             stripPrefix: false
             retryable: false
             path: /pweb/AlipayFastLoanSubmit.do
             customSensitiveHeaders: false
-            serviceId: AlipayFastLoanSubmit.do
+            serviceId: AlipayFastLoanSubmit
             sessionType: IP_HASH
             ruleMatcher: false
             servicePattern: (?<field1>.*)/(?<field2>.*$)
