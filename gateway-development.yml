@@ -33,7 +33,7 @@ zuul:
         first_service:
             stripPrefix: false
             retryable: false
-            path: /first/**
+            path: /pweb/AlipayFastLoanSubmit.do**
             customSensitiveHeaders: false
             serviceId: first_service
             sessionType: IP_HASH
@@ -94,7 +94,7 @@ zuul:
 # 负载均衡配置
 first_service:
     ribbon:
-        listOfServers: 127.0.0.1:8090,127.0.0.1:8091
+        listOfServers: 11.115.0.18:23003,11.115.0.19:23003
         # Max number of retries
         MaxAutoRetries: 0
         # Max number of next servers to retry (excluding the first server)
