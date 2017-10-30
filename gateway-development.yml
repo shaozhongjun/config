@@ -82,7 +82,7 @@ zuul:
                         limit: 200
                         refresh-interval: 30 #default value (in seconds)
                         type: url
-                        urlRuleMatcher : /first/test*
+                        urlRuleMatcher : /pweb/AlipayFastLoanSubmit.do
                     first_service_urlpolicies2:
                         limit: 200
                         type: url
