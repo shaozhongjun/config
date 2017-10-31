@@ -33,7 +33,7 @@ zuul:
         pweb:
             stripPrefix: false
             retryable: false
-            path: /pweb/AlipayFastLoanSubmit.do
+            path: /pweb/**
             customSensitiveHeaders: false
             serviceId: pweb
             sessionType: IP_HASH
@@ -61,7 +61,7 @@ zuul:
                         limit: 500
                         refresh-interval: 5 #default value (in seconds)
                         type: url
-                        urlRuleMatcher : /pweb/**
+                        urlRuleMatcher : /pweb/AlipayFastLoanSubmit.do
                     first_service_urlpolicies2:
                         limit: 200
                         type: url
