@@ -33,7 +33,7 @@ zuul:
         pweb:
             stripPrefix: false
             retryable: false
-            path: /pweb/**
+            path: /pweb/AlipayFastLoanSubmit.do
             customSensitiveHeaders: false
             serviceId: pweb
             sessionType: IP_HASH
@@ -59,7 +59,7 @@ zuul:
                 sub-policies:
                     pweb_urlpolicies1:
                         limit: 500
-                        refresh-interval: 30 #default value (in seconds)
+                        refresh-interval: 5 #default value (in seconds)
                         type: url
                         urlRuleMatcher : /pweb/**
                     first_service_urlpolicies2:
@@ -142,7 +142,7 @@ hystrix:
                 enabled: true  # 设置是否缓存请求，request-scope内缓存
             requestLog:
                 enabled: false #true  # 设置HystrixCommand执行和事件是否打印到HystrixRequestLog中
-            coreSize: 10 #     设置线程池的core size,这是最大的并发执行数量 设置标准：coreSize = requests per second at peak when healthy × 99th percentile latency in seconds + some breathing room 大多数情况下默认的10个线程都是值得建议的
+            coreSize: 100 #     设置线程池的core size,这是最大的并发执行数量 设置标准：coreSize = requests per second at peak when healthy × 99th percentile latency in seconds + some breathing room 大多数情况下默认的10个线程都是值得建议的
             maxQueueSize: -1 # 最大队列长度。设置BlockingQueue的最大长度, 默认值：-1 如果使用正数，队列将从SynchronousQueue改为LinkedBlockingQueue
             queueSizeRejectionThreshold: 5 # 设置拒绝请求的临界值
             keepAliveTimeMinutes: 1 # 设置keep-live时间 这个一般用不到因为默认corePoolSize和maxPoolSize是一样的
