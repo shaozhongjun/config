@@ -75,9 +75,9 @@ pweb:
     ribbon:
         listOfServers: 11.115.0.7:9090,11.115.0.10:9090
         # Max number of retries
-        MaxAutoRetries: 3
+        MaxAutoRetries: 0
         # Max number of next servers to retry (excluding the first server)
-        MaxAutoRetriesNextServer: 3
+        MaxAutoRetriesNextServer: 0
         # Whether all operations can be retried for this client
         OkToRetryOnAllOperations: false
         ReceiveBufferSize: 4096
