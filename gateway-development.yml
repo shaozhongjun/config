@@ -35,7 +35,7 @@ zuul:
             retryable: false
             path: /pweb/**
             customSensitiveHeaders: false
-            serviceId: AlipayFastLoanSubmit
+            serviceId: pweb
             sessionType: IP_HASH
             ruleMatcher: false
             servicePattern: (?<field1>.*)/(?<field2>.*$)
