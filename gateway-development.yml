@@ -5,9 +5,6 @@ ribbon:
      enabled: false
     httpclient:
         enabled: true
-    client:
-        serviceUrl:
-            defaultZone: http://11.115.0.10/pweb/
 #    restclient:   # 有重试机制
 #        enabled: true
 #    okhttp:
