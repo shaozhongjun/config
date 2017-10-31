@@ -98,8 +98,8 @@ pweb:
         # 配置负载均和策略及规则
         NFLoadBalancerClassName: com.netflix.loadbalancer.DynamicServerListLoadBalancer
         NFLoadBalancerRuleClassName: com.ucash.gateway.ribbon.IPHashRule
-        NFLoadBalancerPingClassName: com.ucash.gateway.ribbon.CustomPing
-        NFLoadBalancerPingInterval: 15
+        #NFLoadBalancerPingClassName: com.ucash.gateway.ribbon.CustomPing
+        #NFLoadBalancerPingInterval: 15
         # Interval to refresh the server list from the source
         ServerListRefreshInterval: 60000
 
