@@ -173,7 +173,7 @@ hystrix:
                 isolation:
                     thread:
                         timeoutInMilliseconds: 6000
-        first_service:
+        pweb:
             execution:
                 isolation:
                     strategy: THREAD
