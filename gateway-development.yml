@@ -58,7 +58,7 @@ zuul:
                 ignored-Patterns: '*'
                 sub-policies:
                     pweb_urlpolicies1:
-                        limit: 200
+                        limit: 500
                         refresh-interval: 30 #default value (in seconds)
                         type: url
                         urlRuleMatcher : /pweb/**
@@ -75,9 +75,9 @@ pweb:
     ribbon:
         listOfServers: 11.115.0.7:9090,11.115.0.10:9090
         # Max number of retries
-        MaxAutoRetries: 0
+        MaxAutoRetries: 3
         # Max number of next servers to retry (excluding the first server)
-        MaxAutoRetriesNextServer: 0
+        MaxAutoRetriesNextServer: 3
         # Whether all operations can be retried for this client
         OkToRetryOnAllOperations: false
         ReceiveBufferSize: 4096
@@ -92,7 +92,7 @@ pweb:
         MaxTotalConnections: 3000
         # 配置连接时间
         ConnectTimeout: 3000
-        ReadTimeout: 10000
+        ReadTimeout: 100000
         # 配置数据压缩
         GZipPayload: true
         # 配置负载均和策略及规则
@@ -113,23 +113,23 @@ hystrix:
                     enabled: true
                 isolation:
                     thread:
-                        timeoutInMilliseconds: 6000
+                        timeoutInMilliseconds: 100000
         pweb:
             execution:
                 isolation:
                     strategy: THREAD
                     thread:
-                        timeoutInMilliseconds: 10000 # This property sets the time in milliseconds after which the caller will observe a timeout and walk away from the command execution. Hystrix marks the HystrixCommand as a TIMEOUT, and performs fallback logic. Note that there is configuration for turning off timeouts per-command, if that is desired (see command.timeout.enabled).
+                        timeoutInMilliseconds: 100000 # This property sets the time in milliseconds after which the caller will observe a timeout and walk away from the command execution. Hystrix marks the HystrixCommand as a TIMEOUT, and performs fallback logic. Note that there is configuration for turning off timeouts per-command, if that is desired (see command.timeout.enabled).
                 timeout:
                     enabled: true
             circuitBreaker:
                 enabled: true
-                requestVolumeThreshold: 20        # 熔断器在整个统计时间内是否开启的阀值，默认20秒。也就是10秒钟内至少请求20次，熔断器才发挥起作用
-                sleepWindowInMilliseconds: 50000  # 熔断器默认工作时间,默认:5秒.熔断器中断请求5秒后会进入半打开状态,放部分流量过去重试
+                requestVolumeThreshold: 500        # 熔断器在整个统计时间内是否开启的阀值，默认20秒。也就是10秒钟内至少请求20次，熔断器才发挥起作用
+                sleepWindowInMilliseconds: 10000  # 熔断器默认工作时间,默认:5秒.熔断器中断请求5秒后会进入半打开状态,放部分流量过去重试
                 errorThresholdPercentage: 50      # 默认:50%。当出错率超过50%后熔断器启动.
             metrics:
                 rollingStats:
-                    timeInMilliseconds: 5000  # 设置统计滚动窗口的长度，以毫秒为单位。用于监控和熔断器。
+                    timeInMilliseconds: 10000  # 设置统计滚动窗口的长度，以毫秒为单位。用于监控和熔断器。
                     numBuckets: 10 # 滚动窗口被分隔成桶(bucket)，并且进行滚动。 例如这个属性设置10s(10000)，一个桶是1s。timeInMilliseconds必须能被这个值整除
                 rollingPercentile:
                     enabled: true  # 设置执行时间是否被跟踪，并且计算各个百分比，50%,90%等的时间
